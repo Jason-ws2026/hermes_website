@@ -436,6 +436,56 @@ body {
 .adv-card h4 { font-size: 0.95rem; color: #fff; margin-bottom: 8px; }
 .adv-card p { font-size: 0.8rem; color: rgba(255,255,255,0.45); line-height: 1.7; }
 
+/* ==================== IMAGE GALLERY (for case screenshots) ==================== */
+.case-gallery-section {
+  background: linear-gradient(135deg, #0d0d0d 0%, #0a0a0a 100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 40px;
+  position: relative;
+  overflow: hidden;
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 1100px;
+  width: 100%;
+}
+.gallery-grid-2col {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 800px;
+}
+.gallery-item {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(0,0,0,0.3);
+  transition: transform .3s, border-color .3s;
+}
+.gallery-item:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255,38,64,0.3);
+}
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-height: 75vh;
+  object-fit: contain;
+}
+@media (max-width: 900px) {
+  .gallery-grid { grid-template-columns: 1fr 1fr; max-width: 500px; }
+  .gallery-grid-2col { grid-template-columns: 1fr; max-width: 400px; }
+  .case-gallery-section { padding: 60px 24px; }
+}
+@media (max-width: 500px) {
+  .gallery-grid { grid-template-columns: 1fr; }
+}
+
 /* ==================== CASE STUDY ==================== */
 .case-section {
   background: linear-gradient(135deg, #0a0a0a 0%, #0d0d0d 100%);
@@ -546,6 +596,8 @@ body {
     <li><a href="#method">方法</a></li>
     <li><a href="#advantages">优势</a></li>
     <li><a href="#case">案例</a></li>
+    <li><a href="#ai-search">AI成果</a></li>
+    <li><a href="#douyin">抖音</a></li>
     <li><a href="#contact">联系</a></li>
   </ul>
 </nav>
@@ -780,6 +832,51 @@ body {
         以成都某皮肤管理门店为例，自2025年10月开始为其服务。服务初期月曝光量为1,652人次，月意向转化人数为19人。
         服务半年后，月曝光量提升至4.2万人次，月营收突破8.5万元，实现了曝光涨24倍、收入涨7倍的显著成效。
         核心策略：基于品牌盈利模型定制内容体系，精准投流搭配标准化运营SOP，持续优化转化漏斗。
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== AI SEARCH RESULTS CASE ==================== -->
+  <section class="snap-section case-gallery-section" id="ai-search">
+    <div class="section-label">案例分享</div>
+    <h2 class="section-title">AI 搜索 <span class="accent">成果展示</span></h2>
+    <p class="section-sub">部分客户AI搜索排名优化成果，品牌在豆包、DeepSeek等主流AI平台的自然推荐率显著提升</p>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="images/geo_1.png" alt="GEO成果 - 品牌1" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="images/geo_2.jpg" alt="GEO成果 - 品牌2" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="images/geo_3.png" alt="GEO成果 - 品牌3" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="images/geo_4.jpg" alt="GEO成果 - 品牌4" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="images/geo_5.png" alt="GEO成果 - 品牌5" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="images/geo_6.png" alt="GEO成果 - 品牌6" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="images/geo_7.png" alt="GEO成果 - 品牌7" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== DOUYIN CASE ==================== -->
+  <section class="snap-section case-gallery-section" id="douyin">
+    <div class="section-label">案例分享</div>
+    <h2 class="section-title">抖音引流 <span class="accent">部分成果</span></h2>
+    <p class="section-sub">某玻璃厂家抖音自播带货实战，直播引流效果显著</p>
+    <div class="gallery-grid gallery-grid-2col">
+      <div class="gallery-item">
+        <img src="images/douyin_1.jpg" alt="抖音引流数据 - 1" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="images/douyin_2.jpg" alt="抖音引流数据 - 2" loading="lazy">
       </div>
     </div>
   </section>
