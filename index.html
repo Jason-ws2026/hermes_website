@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拾光者营销策划 — 拾微光以成炬，聚星火以燎原</title>
+<meta name="description" content="拾光者营销策划 — 成都本地生活全域代运营 & AI搜索排名优化专家。一品牌一模型，不做模板化运营。">
+<style>
+/* ==================== RESET & BASE ==================== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  background: #0a0a0a;
+  color: #e8e8e8;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ==================== SCROLL-SNAP CONTAINER ==================== */
+.snap-container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+.snap-section {
+  scroll-snap-align: start;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 80px 40px;
+  overflow: hidden;
+}
+
+/* ==================== NAV ==================== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 48px;
+  background: rgba(10,10,10,0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.nav-logo {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 2px;
+}
+.nav-logo span { color: #FF2640; }
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a {
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  font-size: 0.82rem;
+  letter-spacing: 1px;
+  transition: color .3s;
+}
+.nav-links a:hover { color: #FF2640; }
+
+/* ==================== SECTION BACKGROUNDS ==================== */
+.snap-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.snap-section > * { position: relative; z-index: 1; }
+
+.bg-img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.bg-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.25;
+}
+.bg-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* ==================== HERO ==================== */
+.hero {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 50%, #0a0a0a 100%);
+  text-align: center;
+  position: relative;
+}
+.hero::before {
+  background: radial-gradient(ellipse at 50% 30%, rgba(255,38,64,0.08) 0%, transparent 60%);
+}
+.hero-badge {
+  display: inline-block;
+  padding: 6px 20px;
+  border: 1px solid rgba(255,38,64,0.3);
+  border-radius: 100px;
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  color: #FF2640;
+  margin-bottom: 32px;
+  text-transform: uppercase;
+}
+.hero h1 {
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, #fff 30%, #FF2640 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero .subtitle {
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 40px;
+  letter-spacing: 4px;
+}
+.hero-tagline {
+  display: flex;
+  gap: 48px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+.hero-tagline span {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 2px;
+  position: relative;
+}
+.hero-tagline span::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #FF2640;
+  transition: width .4s;
+}
+.hero-tagline span:hover::after { width: 100%; }
+.hero-cta {
+  display: inline-block;
+  padding: 14px 48px;
+  background: #FF2640;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 100px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  transition: transform .3s, box-shadow .3s;
+}
+.hero-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(255,38,64,0.3);
+}
+.scroll-hint {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,0.2);
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  animation: bounce 2s infinite;
+}
+.scroll-hint .arrow { font-size: 1.2rem; }
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ==================== GENERIC SECTION TITLES ==================== */
+.section-label {
+  font-size: 0.7rem;
+  letter-spacing: 4px;
+  color: #FF2640;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.section-title {
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 700;
+  margin-bottom: 16px;
+  text-align: center;
+}
+.section-title .accent { color: #FF2640; }
+.section-sub {
+  text-align: center;
+  color: rgba(255,255,255,0.4);
+  font-size: 1rem;
+  max-width: 600px;
+  margin-bottom: 48px;
+}
+
+/* ==================== PAIN POINTS ==================== */
+.pain-section {
+  background: linear-gradient(135deg, #0d0d0d 0%, #1a0a0a 100%);
+}
+.pain-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1100px;
+  width: 100%;
+}
+.pain-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  padding: 36px 28px;
+  transition: border-color .3s, transform .3s;
+}
+.pain-card:hover {
+  border-color: rgba(255,38,64,0.3);
+  transform: translateY(-4px);
+}
+.pain-icon {
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+.pain-card h3 {
+  font-size: 1.05rem;
+  color: #fff;
+  margin-bottom: 12px;
+}
+.pain-card p {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.8;
+}
+
+/* ==================== MISSION ==================== */
+.mission-section {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 50%, #0d0d0d 100%);
+  text-align: center;
+}
+.mission-quote {
+  max-width: 800px;
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  color: rgba(255,255,255,0.8);
+  line-height: 2;
+  margin-bottom: 48px;
+  font-style: italic;
+}
+.mission-values {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 900px;
+  width: 100%;
+}
+.mission-value {
+  padding: 24px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.mission-value .num {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #FF2640;
+  opacity: 0.3;
+  margin-bottom: 8px;
+}
+.mission-value h4 {
+  font-size: 0.9rem;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.mission-value p {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.4);
+}
+
+/* ==================== DIFFERENCE ==================== */
+.diff-section {
+  background: linear-gradient(135deg, #0d0d0d 0%, #10080a 100%);
+}
+.diff-content {
+  max-width: 900px;
+  text-align: center;
+}
+.diff-content .highlight {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 2;
+  margin-bottom: 32px;
+}
+.diff-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  text-align: left;
+  margin-top: 16px;
+}
+.diff-item {
+  background: rgba(255,38,64,0.04);
+  border-left: 3px solid #FF2640;
+  padding: 20px 24px;
+  border-radius: 0 8px 8px 0;
+}
+.diff-item strong { color: #fff; display: block; margin-bottom: 6px; font-size: 0.9rem; }
+.diff-item span { color: rgba(255,255,255,0.5); font-size: 0.82rem; line-height: 1.8; }
+
+/* ==================== TEAM ==================== */
+.team-section {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0d0d0d 100%);
+}
+.team-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  max-width: 1000px;
+  width: 100%;
+}
+.team-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  padding: 36px 28px;
+  text-align: center;
+}
+.team-card .avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FF2640, #ff6b6b);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 auto 16px;
+}
+.team-card h3 { font-size: 1.2rem; color: #fff; margin-bottom: 4px; }
+.team-card .role { color: #FF2640; font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 16px; }
+.team-card .bio {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.9;
+  text-align: left;
+}
+.team-card .bio strong { color: rgba(255,255,255,0.7); }
+
+/* ==================== SERVICES ==================== */
+.srv-section {
+  background: linear-gradient(135deg, #0d0d0d 0%, #1a0a0a 100%);
+}
+.srv-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1100px;
+  width: 100%;
+}
+.srv-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  padding: 36px 28px;
+  text-align: center;
+  transition: border-color .3s;
+}
+.srv-card:hover { border-color: rgba(255,38,64,0.3); }
+.srv-card .icon { font-size: 2.5rem; margin-bottom: 16px; }
+.srv-card h3 { font-size: 1.1rem; color: #fff; margin-bottom: 12px; }
+.srv-card p { font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.9; }
+
+/* ==================== METHOD ==================== */
+.method-section {
+  background: linear-gradient(135deg, #0a0a0a 0%, #10080a 100%);
+}
+.method-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1000px;
+  width: 100%;
+}
+.method-step {
+  text-align: center;
+  padding: 32px 24px;
+}
+.method-step .step-num {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #FF2640;
+  opacity: 0.15;
+  margin-bottom: 8px;
+}
+.method-step h3 { font-size: 1rem; color: #fff; margin-bottom: 10px; }
+.method-step p { font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.8; }
+
+/* ==================== ADVANTAGES ==================== */
+.adv-section {
+  background: linear-gradient(135deg, #0d0d0d 0%, #0a0a0a 100%);
+}
+.adv-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 900px;
+  width: 100%;
+}
+.adv-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 12px;
+  padding: 28px 24px;
+  text-align: center;
+}
+.adv-card .icon { font-size: 1.8rem; margin-bottom: 12px; }
+.adv-card h4 { font-size: 0.95rem; color: #fff; margin-bottom: 8px; }
+.adv-card p { font-size: 0.8rem; color: rgba(255,255,255,0.45); line-height: 1.7; }
+
+/* ==================== CASE STUDY ==================== */
+.case-section {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0d0d0d 100%);
+}
+.case-content {
+  max-width: 900px;
+  width: 100%;
+}
+.case-data {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 32px;
+}
+.case-stat {
+  text-align: center;
+  padding: 32px 16px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.case-stat .num {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: #FF2640;
+  margin-bottom: 4px;
+}
+.case-stat .num .unit { font-size: 1rem; opacity: 0.6; }
+.case-stat .label { font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+.case-desc {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 12px;
+  padding: 24px 28px;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 2;
+}
+
+/* ==================== THANK YOU / CONTACT ==================== */
+.contact-section {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 100%);
+  text-align: center;
+}
+.contact-section h2 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.contact-section h2 .accent { color: #FF2640; }
+.contact-info {
+  margin-top: 40px;
+  display: flex;
+  gap: 48px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.contact-item {
+  text-align: center;
+}
+.contact-item .label {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.contact-item .value {
+  font-size: 1.1rem;
+  color: #fff;
+  font-weight: 500;
+}
+.footer-note {
+  margin-top: 64px;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.15);
+  letter-spacing: 1px;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 900px) {
+  .pain-grid, .mission-values, .srv-grid { grid-template-columns: 1fr; max-width: 500px; }
+  .team-grid, .adv-grid { grid-template-columns: 1fr; max-width: 500px; }
+  .diff-block { grid-template-columns: 1fr; }
+  .method-steps { grid-template-columns: 1fr; max-width: 500px; }
+  .case-data { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto 24px; }
+  .nav { padding: 14px 20px; }
+  .nav-links { gap: 14px; }
+  .nav-links a { font-size: 0.7rem; }
+  .hero-tagline { gap: 24px; }
+  .snap-section { padding: 60px 24px; }
+  .contact-info { flex-direction: column; gap: 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== NAV ==================== -->
+<nav class="nav">
+  <div class="nav-logo">拾光者<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#pain">痛点</a></li>
+    <li><a href="#mission">使命</a></li>
+    <li><a href="#diff">差异化</a></li>
+    <li><a href="#team">团队</a></li>
+    <li><a href="#services">服务</a></li>
+    <li><a href="#method">方法</a></li>
+    <li><a href="#advantages">优势</a></li>
+    <li><a href="#case">案例</a></li>
+    <li><a href="#contact">联系</a></li>
+  </ul>
+</nav>
+
+<div class="snap-container">
+
+  <!-- ==================== HERO ==================== -->
+  <section class="snap-section hero" id="hero">
+    <div class="hero-badge">Since 2026 · Chengdu</div>
+    <h1>拾光者<br>营销策划</h1>
+    <p class="subtitle">全域运营 &middot; AI搜索优化 &middot; 品牌增长</p>
+    <div class="hero-tagline">
+      <span>Exclusive Service</span>
+      <span>Precise Customer Acquisition</span>
+      <span>All-round Growth</span>
+      <span>Win-win Situation</span>
+    </div>
+    <a href="#services" class="hero-cta">了解服务 →</a>
+    <div class="scroll-hint">
+      <span>向下滚动</span>
+      <span class="arrow">⌄</span>
+    </div>
+  </section>
+
+  <!-- ==================== PAIN POINTS ==================== -->
+  <section class="snap-section pain-section" id="pain">
+    <div class="section-label">行业现状</div>
+    <h2 class="section-title">代运营行业的<span class="accent">三大痛点</span></h2>
+    <p class="section-sub">为什么很多商家找了代运营却看不到效果？我们看到了问题所在</p>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-icon">📋</div>
+        <h3>模板化服务</h3>
+        <p>不少代运营公司采用一套方案服务全品类商家，全然不考虑品牌的客单价、产品结构以及盈利模式，只是盲目追逐流量数据。表面上曝光量可观，实则引流而来的用户与品牌并不匹配，转化率极低。</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">💰</div>
+        <h3>低价陷阱</h3>
+        <p>行业内部分机构以极低的服务费吸引商家，然而一名运营人员需同时对接三十多个客户，根本无暇进行精细化运营。最终商家缴纳费用后仅能获得几套标准化模板，却看不到实际的业绩增长。</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">📊</div>
+        <h3>只做表面流量</h3>
+        <p>许多代运营公司仅盯着播放量、曝光数，却不深入拆解商家的利润结构，也不设计转化闭环。流量看似热闹非凡，但到店率、复购率、客单价均未得到提升，无法为商家带来实实在在的营收增长。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== MISSION ==================== -->
+  <section class="snap-section mission-section" id="mission">
+    <div class="section-label">使命与愿景</div>
+    <h2 class="section-title">拾微光以成炬<br><span style="font-size:0.6em;color:rgba(255,255,255,0.3)">聚星火以燎原</span></h2>
+    <div class="mission-quote">
+      "很多企业都是静待绽放的微光火种，<br>
+      我们拾光者拾起点点微光，用心护持，助其绽放最耀眼的光。"
+    </div>
+    <div class="mission-values">
+      <div class="mission-value">
+        <div class="num">01</div>
+        <h4>以数据为支撑</h4>
+        <p>全流程指标量化，以数据复盘驱动优化，让每一个决策都有据可依</p>
+      </div>
+      <div class="mission-value">
+        <div class="num">02</div>
+        <h4>以流程为标准</h4>
+        <p>运营、管理、转化、复购全流程标准化，确保高质量落地</p>
+      </div>
+      <div class="mission-value">
+        <div class="num">03</div>
+        <h4>以盈利为目标</h4>
+        <p>告别粗放获客与碎片化运营，打造可落地、可复制、可规模化的全域增长体系</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== DIFFERENCE ==================== -->
+  <section class="snap-section diff-section" id="diff">
+    <div class="section-label">我们的不同</div>
+    <h2 class="section-title">我们有什么<span class="accent">不同</span></h2>
+    <div class="diff-content">
+      <p class="highlight">
+        所有运营动作，均围绕品牌盈利模型核心展开。我们不优先做内容、不盲目做引流，<br>
+        第一步先深度拆解品牌盈利结构，基于此定制全域全案方案。
+      </p>
+      <div class="diff-block">
+        <div class="diff-item">
+          <strong>一品牌、一模型、一套专属打法</strong>
+          <span>每个客户都是独立的案例，拒绝模板化运营。先拆解盈利结构，再定制方案。</span>
+        </div>
+        <div class="diff-item">
+          <strong>一切以业绩结果、业务增长为核心</strong>
+          <span>不做流于表面的形式化运营，只打造能快速出单、长期稳定复利的品牌全域运营体系。</span>
+        </div>
+        <div class="diff-item">
+          <strong>全域平台联动，矩阵式运营</strong>
+          <span>打通抖音、美团、大众点评、小红书、AI搜索等全域流量阵地，实现立体化获客。</span>
+        </div>
+        <div class="diff-item">
+          <strong>双核创始人亲自带队</strong>
+          <span>全域操盘手 + 资深管理专家亲自把控项目，确保每一环节精细落地。</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TEAM ==================== -->
+  <section class="snap-section team-section" id="team">
+    <div class="section-label">创始团队</div>
+    <h2 class="section-title">我们究竟是<span class="accent">谁</span></h2>
+    <p class="section-sub">两位创始人各有所长，优势互补，共同驱动品牌增长</p>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="avatar">任</div>
+        <h3>任静</h3>
+        <div class="role">联合创始人 · 全域操盘手</div>
+        <div class="bio">
+          <strong>履历：</strong>盐帮小锅卤连锁创始人、北星之光美业连锁30+联合创始人、网红静静小院主理人、全网20万粉丝资深博主、带货主播达人、IP孵化高级讲师。<br><br>
+          <strong>核心能力：</strong>精通盈利型SOP全链路搭建，擅长跨行业全域操盘与公域流量变现，拥有丰富的多品牌从0到1实战经验。
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="avatar">王</div>
+        <h3>王盛</h3>
+        <div class="role">联合创始人 · 管理专家</div>
+        <div class="bio">
+          <strong>履历：</strong>毕业于东北大学软件学院艺术专业，互联网与数字化生产型企业精细化管理专家。深耕互联网领域，带领数百人团队成功抢占全国互联网市场。<br><br>
+          <strong>核心能力：</strong>擅长大型团队管理、业务数据化落地与作业流程标准化，精通AI内容创作与数字化营销体系搭建。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SERVICES ==================== -->
+  <section class="snap-section srv-section" id="services">
+    <div class="section-label">服务内容</div>
+    <h2 class="section-title">我们能做<span class="accent">什么</span></h2>
+    <div class="srv-grid">
+      <div class="srv-card">
+        <div class="icon">🌐</div>
+        <h3>全域平台代运营</h3>
+        <p>定制抖音、美团、大众点评、小红书全域投流方案，负责精准投放、成本管控、效果追踪、人群优化。全面提升点击、咨询、到店及复购，助力门店高效拓客、业绩增长。</p>
+      </div>
+      <div class="srv-card">
+        <div class="icon">🤖</div>
+        <h3>AI搜索广告（GEO）</h3>
+        <p>布局豆包、通义千问、DeepSeek、Kimi、腾讯元宝等主流AI大模型。通过搭建品牌知识图谱、语义优化、强化权威信源、结构化内容适配，抢占AI"答案经济"流量。</p>
+      </div>
+      <div class="srv-card">
+        <div class="icon">🏗️</div>
+        <h3>搭建整套经营体系</h3>
+        <p>让企业拥有承载业务增量的能力。从商业模式设计、团队架构搭建、薪酬体系优化到标准化SOP搭建，助力实体门店稳健经营、长效盈利。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== METHOD ==================== -->
+  <section class="snap-section method-section" id="method">
+    <div class="section-label">方法论</div>
+    <h2 class="section-title">我们怎么<span class="accent">做</span></h2>
+    <p class="section-sub">坚持一门店、一模型、一套专属打法，一切以业绩结果为核心</p>
+    <div class="method-steps">
+      <div class="method-step">
+        <div class="step-num">01</div>
+        <h3>深度诊断</h3>
+        <p>拆解品牌盈利结构：客单价、产品结构、利润来源、经营短板，明确核心增长方向</p>
+      </div>
+      <div class="method-step">
+        <div class="step-num">02</div>
+        <h3>定制方案</h3>
+        <p>基于诊断结果，定制全域全案方案，包含同城布局、平台侧重、内容体系、引流玩法</p>
+      </div>
+      <div class="method-step">
+        <div class="step-num">03</div>
+        <h3>精细执行</h3>
+        <p>全流程标准化执行，数据复盘驱动持续优化，月度复盘调整策略，确保增长路径清晰可量化</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ADVANTAGES ==================== -->
+  <section class="snap-section adv-section" id="advantages">
+    <div class="section-label">核心优势</div>
+    <h2 class="section-title">我们的<span class="accent">优势</span></h2>
+    <div class="adv-grid">
+      <div class="adv-card">
+        <div class="icon">👥</div>
+        <h4>双核创始人带队</h4>
+        <p>全域操盘手 + 资深管理专家亲自把控项目，拒绝模板化服务，全程精细化落地</p>
+      </div>
+      <div class="adv-card">
+        <div class="icon">📡</div>
+        <h4>全渠道全域覆盖</h4>
+        <p>打通短视频、本地生活、社交种草、AI搜索四大流量阵地，搭建完整营销矩阵</p>
+      </div>
+      <div class="adv-card">
+        <div class="icon">📈</div>
+        <h4>数据化精细运营</h4>
+        <p>全流程指标量化，以数据复盘驱动优化，锚定盈利增长</p>
+      </div>
+      <div class="adv-card">
+        <div class="icon">📋</div>
+        <h4>标准化SOP体系</h4>
+        <p>运营、管理、转化、复购全流程标准化，落地高效、有效降本</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CASE STUDY ==================== -->
+  <section class="snap-section case-section" id="case">
+    <div class="section-label">案例分享</div>
+    <h2 class="section-title">Case Study <span class="accent">Sharing</span></h2>
+    <p class="section-sub">某皮肤管理门店 · 美团代运营半年成果</p>
+    <div class="case-content">
+      <div class="case-data">
+        <div class="case-stat">
+          <div class="num">4.2<span class="unit">万</span></div>
+          <div class="label">月曝光人次</div>
+          <div style="font-size:0.7rem;color:rgba(255,255,255,0.2);margin-top:4px">↑ 从1,652 → 42,000</div>
+        </div>
+        <div class="case-stat">
+          <div class="num">8.5<span class="unit">万</span></div>
+          <div class="label">月营收</div>
+          <div style="font-size:0.7rem;color:rgba(255,255,255,0.2);margin-top:4px">↑ 增长7倍</div>
+        </div>
+        <div class="case-stat">
+          <div class="num">24<span class="unit">x</span></div>
+          <div class="label">曝光涨幅</div>
+          <div style="font-size:0.7rem;color:rgba(255,255,255,0.2);margin-top:4px">半年持续增长</div>
+        </div>
+      </div>
+      <div class="case-desc">
+        以成都某皮肤管理门店为例，自2025年10月开始为其服务。服务初期月曝光量为1,652人次，月意向转化人数为19人。
+        服务半年后，月曝光量提升至4.2万人次，月营收突破8.5万元，实现了曝光涨24倍、收入涨7倍的显著成效。
+        核心策略：基于品牌盈利模型定制内容体系，精准投流搭配标准化运营SOP，持续优化转化漏斗。
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CONTACT ==================== -->
+  <section class="snap-section contact-section" id="contact">
+    <div class="section-label">联系我们</div>
+    <h2>THANK <span class="accent">YOU</span></h2>
+    <p style="color:rgba(255,255,255,0.4);margin-bottom:8px;font-size:1rem">您的成功，才是我们公司的价值体现</p>
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="label">电话</div>
+        <div class="value">15928644079</div>
+      </div>
+      <div class="contact-item">
+        <div class="label">地址</div>
+        <div class="value" style="font-size:0.9rem">成都双流区新川创新科技园A4栋</div>
+      </div>
+      <div class="contact-item">
+        <div class="label">品牌搜索</div>
+        <div class="value" style="font-size:0.9rem">搜索 "拾光者营销策划"</div>
+      </div>
+    </div>
+    <div class="footer-note">
+      &copy; 2026 拾光者营销策划 &mdash; 拾微光以成炬，聚星火以燎原
+    </div>
+  </section>
+
+</div>
+
+<script>
+// Intersection Observer for active nav highlight
+const sections = document.querySelectorAll('.snap-section');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navLinks.forEach(link => {
+        link.style.color = link.getAttribute('href') === '#' + id ? '#FF2640' : 'rgba(255,255,255,0.6)';
+      });
+    }
+  });
+}, { threshold: 0.4 });
+
+sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
