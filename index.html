@@ -97,64 +97,61 @@ body {
 
 /* ==================== HERO ==================== */
 .hero {
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 50%, #0a0a0a 100%);
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a0808 50%, #0a0a0a 100%);
   text-align: center;
   position: relative;
+  justify-content: center;
 }
 .hero::before {
-  background: radial-gradient(ellipse at 50% 30%, rgba(255,38,64,0.08) 0%, transparent 60%);
+  background: radial-gradient(ellipse at 50% 45%, rgba(255,38,64,0.10) 0%, rgba(255,200,200,0.04) 30%, transparent 55%);
 }
 .hero-badge {
   display: inline-block;
   padding: 6px 20px;
-  border: 1px solid rgba(255,38,64,0.3);
+  border: 1px solid rgba(255,255,255,0.08);
   border-radius: 100px;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   letter-spacing: 3px;
-  color: #FF2640;
-  margin-bottom: 32px;
-  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 24px;
 }
 .hero h1 {
-  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-size: clamp(3rem, 8vw, 6rem);
   font-weight: 800;
-  line-height: 1.15;
-  margin-bottom: 8px;
-  background: linear-gradient(135deg, #fff 30%, #FF2640 100%);
+  line-height: 1.1;
+  margin-bottom: 4px;
+  letter-spacing: 4px;
+}
+.hero h1 .brand-main {
+  background: linear-gradient(135deg, #fff 20%, #ffd0d0 50%, #FF2640 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  display: block;
+}
+.hero h1 .brand-sec {
+  font-size: 0.55em;
+  color: rgba(255,255,255,0.15);
+  font-weight: 300;
+  letter-spacing: 8px;
+  display: block;
+  margin-top: 4px;
 }
 .hero .subtitle {
-  font-size: clamp(1rem, 2vw, 1.3rem);
-  color: rgba(255,255,255,0.5);
-  margin-bottom: 40px;
-  letter-spacing: 4px;
+  font-size: clamp(0.85rem, 1.5vw, 1.05rem);
+  color: rgba(255,255,255,0.25);
+  margin-top: 20px;
+  margin-bottom: 0;
+  letter-spacing: 6px;
+  font-weight: 300;
 }
-.hero-tagline {
+.hero-cta-wrap {
+  margin-top: 48px;
   display: flex;
-  gap: 48px;
+  gap: 16px;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 48px;
 }
-.hero-tagline span {
-  font-size: 0.85rem;
-  color: rgba(255,255,255,0.4);
-  letter-spacing: 2px;
-  position: relative;
-}
-.hero-tagline span::after {
-  content: '';
-  position: absolute;
-  bottom: -6px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: #FF2640;
-  transition: width .4s;
-}
-.hero-tagline span:hover::after { width: 100%; }
 .hero-cta {
   display: inline-block;
   padding: 14px 48px;
@@ -170,6 +167,22 @@ body {
 .hero-cta:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 32px rgba(255,38,64,0.3);
+}
+.hero-cta-outline {
+  display: inline-block;
+  padding: 14px 40px;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+  transition: border-color .3s, color .3s;
+}
+.hero-cta-outline:hover {
+  border-color: rgba(255,38,64,0.4);
+  color: #fff;
 }
 .scroll-hint {
   position: absolute;
@@ -606,16 +619,16 @@ body {
 
   <!-- ==================== HERO ==================== -->
   <section class="snap-section hero" id="hero">
-    <div class="hero-badge">Since 2026 · Chengdu</div>
-    <h1>拾光者<br>营销策划</h1>
-    <p class="subtitle">全域运营 &middot; AI搜索优化 &middot; 品牌增长</p>
-    <div class="hero-tagline">
-      <span>Exclusive Service</span>
-      <span>Precise Customer Acquisition</span>
-      <span>All-round Growth</span>
-      <span>Win-win Situation</span>
+    <div class="hero-badge">SINCE 2026 · CHENGDU</div>
+    <h1>
+      <span class="brand-main">拾光者</span>
+      <span class="brand-sec">营销策划</span>
+    </h1>
+    <p class="subtitle">全域运营 ／ AI搜索优化 ／ 品牌增长</p>
+    <div class="hero-cta-wrap">
+      <a href="#services" class="hero-cta">了解服务 →</a>
+      <a href="#case" class="hero-cta-outline">成功案例</a>
     </div>
-    <a href="#services" class="hero-cta">了解服务 →</a>
     <div class="scroll-hint">
       <span>向下滚动</span>
       <span class="arrow">⌄</span>
