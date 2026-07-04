@@ -473,6 +473,10 @@ body {
   grid-template-columns: repeat(2, 1fr);
   max-width: 800px;
 }
+.gallery-grid-4col {
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 1100px;
+}
 .gallery-item {
   border-radius: 12px;
   overflow: hidden;
@@ -507,10 +511,12 @@ body {
 @media (max-width: 900px) {
   .gallery-grid { grid-template-columns: 1fr 1fr; max-width: 500px; }
   .gallery-grid-2col { grid-template-columns: 1fr; max-width: 400px; }
+  .gallery-grid-4col { grid-template-columns: 1fr 1fr; max-width: 500px; }
   .case-gallery-section { padding: 60px 24px; }
 }
 @media (max-width: 500px) {
   .gallery-grid { grid-template-columns: 1fr; }
+  .gallery-grid-4col { grid-template-columns: 1fr; }
 }
 
 /* ==================== CASE STUDY ==================== */
@@ -868,27 +874,18 @@ body {
     <div class="section-label">案例分享</div>
     <h2 class="section-title">AI 搜索 <span class="accent">成果展示</span></h2>
     <p class="section-sub">部分客户AI搜索排名优化成果，品牌在豆包、DeepSeek等主流AI平台的自然推荐率显著提升</p>
-    <div class="gallery-grid">
-      <div class="gallery-item">
-        <img src="images/geo_1.png" alt="GEO成果 - 品牌1" loading="lazy">
+    <div class="gallery-grid gallery-grid-4col">
+      <div class="gallery-item gallery-item-fixed">
+        <img src="images/AI搜索01.jpg" alt="AI搜索成果 - 1" loading="lazy">
       </div>
-      <div class="gallery-item">
-        <img src="images/geo_2.jpg" alt="GEO成果 - 品牌2" loading="lazy">
+      <div class="gallery-item gallery-item-fixed">
+        <img src="images/AI搜索02.jpg" alt="AI搜索成果 - 2" loading="lazy">
       </div>
-      <div class="gallery-item">
-        <img src="images/geo_3.png" alt="GEO成果 - 品牌3" loading="lazy">
+      <div class="gallery-item gallery-item-fixed">
+        <img src="images/AI搜索03.jpg" alt="AI搜索成果 - 3" loading="lazy">
       </div>
-      <div class="gallery-item">
-        <img src="images/geo_4.jpg" alt="GEO成果 - 品牌4" loading="lazy">
-      </div>
-      <div class="gallery-item">
-        <img src="images/geo_5.png" alt="GEO成果 - 品牌5" loading="lazy">
-      </div>
-      <div class="gallery-item">
-        <img src="images/geo_6.png" alt="GEO成果 - 品牌6" loading="lazy">
-      </div>
-      <div class="gallery-item">
-        <img src="images/geo_7.png" alt="GEO成果 - 品牌7" loading="lazy">
+      <div class="gallery-item gallery-item-fixed">
+        <img src="images/AI搜索04.jpg" alt="AI搜索成果 - 4" loading="lazy">
       </div>
     </div>
   </section>
